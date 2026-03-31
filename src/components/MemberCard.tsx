@@ -16,7 +16,7 @@ export default function MemberCard({ member }: Props) {
       </p>
 
       
-      // Inside MemberCard.tsx
+    
 
 <div className="mt-3">
   <Link

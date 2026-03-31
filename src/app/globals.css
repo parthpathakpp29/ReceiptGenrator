@@ -1,26 +1,77 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
+/* ─── Screen styles ─────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --receipt-border: #2c2c2c;
+  --receipt-header-bg: #3a3a3a;
+  --receipt-row-bg: #f5f5f5;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 38%),
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.09), transparent 34%),
+    #f3f4f6;
+}
+
+.section-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.06);
+}
+
+/* ─── Print CSS (A4 layout) ──────────────────────── */
+@media print {
+  /* Hide everything except the receipt */
+  body * {
+    visibility: hidden;
+  }
+
+  #receipt-printable,
+  #receipt-printable * {
+    visibility: visible;
+  }
+
+  #receipt-printable {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 12mm;
+    box-sizing: border-box;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Force table borders to print */
+  table, th, td {
+    border-color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Remove shadows for print */
+  * {
+    box-shadow: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
 }
